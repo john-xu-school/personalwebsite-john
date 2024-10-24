@@ -3,28 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Website</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="scripts/main.js"></script>
+    <title>Cool Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <section id="section1" class="page-section">
-        <h1>Welcome to my website</h1>
-        <p>My name is john. I like ice cream</p>
-    </section>
-    
-    <section id="section2" class="page-section">
-        <h1>More about me</h1>
-        <p>I am taking HTCS. This website is the start of a new unit</p>
-    </section>
-    
-    <section id="section3" class="page-section">
-        <h1>Goofy</h1>
-        <p>The goof.</p>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Cool Website</h1>
+            <p>Building modern websites with creativity and technology</p>
+            <a href="#about" class="cta-button">Learn More</a>
+        </div>
     </section>
 
-    <section id="counter" class="page-section">
-        <h1>Counter</h1>
-        <p>Count: <span id="count">0</span></p>
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are a team of developers passionate about creating innovative solutions for the modern web.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-container">
+            <div class="service">
+                <h3>Web Development</h3>
+                <p>We build responsive, fast, and accessible websites.</p>
+            </div>
+            <div class="service">
+                <h3>Mobile Apps</h3>
+                <p>Developing sleek and functional mobile apps for Android and iOS.</p>
+            </div>
+            <div class="service">
+                <h3>UI/UX Design</h3>
+                <p>Designing user-centric experiences that are a joy to use.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cool Website. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
