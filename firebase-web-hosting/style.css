@@ -1,48 +1,63 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
     margin: 0;
-    padding: 20px;
-    background-color: #f0f8ff;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
+/* Model Background */
+.model-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+model-viewer {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    transition: transform 0.3s ease-out;
+}
+
+/* Main Content */
 .container {
+    position: relative;
+    z-index: 1;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.simulation-canvas {
-    border: 2px solid #333;
-    background-color: #fff;
-    margin: 20px 0;
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .controls {
-    display: flex;
-    gap: 10px;
     margin-bottom: 20px;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.stat-box {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 button {
     padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
     background-color: #4CAF50;
     color: white;
-    cursor: pointer;
+    border: none;
+    border-radius: 4px;
     transition: background-color 0.3s;
 }
 
@@ -50,7 +65,44 @@ button:hover {
     background-color: #45a049;
 }
 
-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+#stopBtn {
+    background-color: #f44336;
+}
+
+#stopBtn:hover {
+    background-color: #da190b;
+}
+
+#clearBtn {
+    background-color: #008CBA;
+}
+
+#clearBtn:hover {
+    background-color: #007399;
+}
+
+#gameCanvas {
+    border: 1px solid #999;
+    background-color: white;
+    margin: 0 auto;
+    display: block;
+}
+
+.info {
+    margin-top: 20px;
+    color: #666;
+    text-align: center;
+}
+
+/* Glass effect for container */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px);
+    z-index: -1;
+    border-radius: 10px;
 }

@@ -3,69 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>John's Game of Life</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav id="navbar">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Cool Website</h1>
-            <p>Building modern websites with creativity and technology</p>
-            <a href="#about" class="cta-button">Learn More</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Us</h2>
-        <p>We are a team of developers passionate about creating innovative solutions for the modern web.</p>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="service-container">
-            <div class="service">
-                <h3>Web Development</h3>
-                <p>We build responsive, fast, and accessible websites.</p>
+    <div class="main-container">
+        <div class="game-container">
+            <h1>John's Game of Life</h1>
+            <h2>POV: you realize Life is a Turing Complete Game</h2>
+            <div class="controls">
+                <button id="startBtn">Start</button>
+                <button id="stopBtn">Stop</button>
+                <button id="clearBtn">Clear</button>
+                <button id="randomBtn">Random</button>
             </div>
-            <div class="service">
-                <h3>Mobile Apps</h3>
-                <p>Developing sleek and functional mobile apps for Android and iOS.</p>
-            </div>
-            <div class="service">
-                <h3>UI/UX Design</h3>
-                <p>Designing user-centric experiences that are a joy to use.</p>
+            <canvas id="gameCanvas"></canvas>
+            <div class="info">
+                <p>Click cells to toggle them alive/dead</p>
+                <p>Generation: <span id="generationCount">0</span></p>
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form id="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Cool Website. All rights reserved.</p>
-    </footer>
-
-    <script src="main.js"></script>
+        <!-- <div class="model-container">
+            <h2>3D Model Viewer</h2>
+            <div class="viewer-container">
+                <model-viewer
+                    id="model"
+                    camera-controls
+                    auto-rotate
+                    rotation-per-second="30deg"
+                    src="john.glb"
+                    ios-src="john.usdz"
+                    alt="3D model viewer"
+                    ar
+                    ar-modes="webxr scene-viewer quick-look"
+                    camera-orbit="0deg 75deg 105%"
+                    exposure="1">
+                </model-viewer>
+            </div>
+            <div class="model-controls">
+                <div class="control-group">
+                    <label>Rotation Speed:</label>
+                    <input type="range" id="rotationSpeed" min="0" max="100" value="30">
+                    <span id="speedValue">30°/s</span>
+                </div>
+                <div class="control-group">
+                    <label>Auto-Rotate:</label>
+                    <button id="toggleRotate">Stop</button>
+                </div>
+                <div class="control-group">
+                    <label>Camera Position:</label>
+                    <button id="resetView">Reset View</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="model-background">
+        <model-viewer
+            id="model"
+            src="john.glb"
+            ios-src="john.usdz"
+            alt="Bouncing 3D model"
+            camera-controls="false"
+            auto-rotate
+            rotation-per-second="30deg"
+            interaction-policy="none"
+            camera-orbit="0deg 75deg 105%"
+            exposure="1"
+            shadow-intensity="1"
+            environment-image="neutral">
+        </model-viewer>
+    </div>
+    <script src="scripts/game-logic.js"></script>
+    <script src="scripts/event-handlers.js"></script>
+    <script src="scripts/bouncing-model.js"></script>
 </body>
 </html>
