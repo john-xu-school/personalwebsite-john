@@ -104,6 +104,29 @@ import {
       this.draw();
     }
     
+    getCellState(x, y) {
+        const col = Math.floor(x / this.cellSize);
+        const row = Math.floor(y / this.cellSize);
+        
+        if (row >= 0 && row < this.rows && col >= 0 && col < this.cols) {
+            return this.grid[row][col];
+        }
+        return null;
+    }
+    
+    setCell(x, y, state) {
+        const col = Math.floor(x / this.cellSize);
+        const row = Math.floor(y / this.cellSize);
+        
+        if (row >= 0 && row < this.rows && col >= 0 && col < this.cols) {
+            if (this.grid[row][col] !== state) {
+                this.grid[row][col] = state;
+                this.draw();
+                incrementPatternCount();
+            }
+        }
+    }
+    
     countNeighbors(row, col) {
       let count = 0;
       for (let i = -1; i <= 1; i++) {
