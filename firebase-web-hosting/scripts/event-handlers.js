@@ -1,9 +1,15 @@
+import { GameOfLife } from './game-logic.js';
+
 let game;
 let animationId;
 
 window.onload = () => {
     const canvas = document.getElementById('gameCanvas');
-    game = new GameOfLife(canvas);
+    console.log (canvas);
+    console.log (canvas.getContext("2d"));
+    canvas.width = 600;
+    canvas.height = 400; 
+    game = new GameOfLife('gameCanvas');
     game.draw();
 
     // Button click handlers

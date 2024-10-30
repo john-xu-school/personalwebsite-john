@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let position = { x: 0, y: 0 };
     let velocity = { x: 2, y: 1 };
     let rotation = { x: 0, y: 0, z: 0 };
-    let rotationVelocity = { x: 1, y: 1, z: 1 };
+    let rotationVelocity = { x: 0.3, y: 0.3, z: 0.3 };
 
     // Set initial random position
     position.x = Math.random() * (window.innerWidth - 50);
@@ -26,11 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         position.y += velocity.y;
 
         // Bounce off walls
-        if (position.x <= 0 || position.x >= window.innerWidth - 300) {
+        if (position.x <= 0 || position.x >= window.innerWidth - 50) {
             velocity.x *= -1;
             randomizeRotationVelocities();
         }
-        if (position.y <= 0 || position.y >= window.innerHeight - 300) {
+        if (position.y <= 0 || position.y >= window.innerHeight - 50) {
             velocity.y *= -1;
             randomizeRotationVelocities();
         }
@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle window resize
     window.addEventListener('resize', () => {
         // Keep model within bounds after resize
-        position.x = Math.min(position.x, window.innerWidth - 300);
-        position.y = Math.min(position.y, window.innerHeight - 300);
+        position.x = Math.min(position.x, window.innerWidth - 50);
+        position.y = Math.min(position.y, window.innerHeight - 50);
     });
 
     // Handle model loading

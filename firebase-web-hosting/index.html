@@ -24,41 +24,6 @@
                 <p>Generation: <span id="generationCount">0</span></p>
             </div>
         </div>
-
-        <!-- <div class="model-container">
-            <h2>3D Model Viewer</h2>
-            <div class="viewer-container">
-                <model-viewer
-                    id="model"
-                    camera-controls
-                    auto-rotate
-                    rotation-per-second="30deg"
-                    src="john.glb"
-                    ios-src="john.usdz"
-                    alt="3D model viewer"
-                    ar
-                    ar-modes="webxr scene-viewer quick-look"
-                    camera-orbit="0deg 75deg 105%"
-                    exposure="1">
-                </model-viewer>
-            </div>
-            <div class="model-controls">
-                <div class="control-group">
-                    <label>Rotation Speed:</label>
-                    <input type="range" id="rotationSpeed" min="0" max="100" value="30">
-                    <span id="speedValue">30°/s</span>
-                </div>
-                <div class="control-group">
-                    <label>Auto-Rotate:</label>
-                    <button id="toggleRotate">Stop</button>
-                </div>
-                <div class="control-group">
-                    <label>Camera Position:</label>
-                    <button id="resetView">Reset View</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="model-background">
         <model-viewer
             id="model"
@@ -75,8 +40,30 @@
             environment-image="neutral">
         </model-viewer>
     </div>
-    <script src="scripts/game-logic.js"></script>
-    <script src="scripts/event-handlers.js"></script>
+    <div class="user-stats">
+        <h3>Your Statistics</h3>
+        <div id="userStats" class="stat-items">
+            <p class="stat-item">Visit count: <span id="visitCount">0</span></p>
+            <p class="stat-item">Patterns created: <span id="patternsCreated">0</span></p>
+            <p class="stat-item">Total generations run: <span id="totalGenerations">0</span></p>
+            <p class="stat-item">Last visit: <span id="lastVisit">First visit</span></p>
+        </div>
+    </div>
+
+    <!-- Global Statistics Section -->
+    <div class="global-stats">
+        <h3>Global Statistics</h3>
+        <div id="globalStats" class="stat-items">
+            <p class="stat-item">Total patterns created: <span id="globalPatterns">0</span></p>
+            <p class="stat-item">Total generations run: <span id="globalGenerations">0</span></p>
+            <p class="stat-item">Active users: <span id="activeUsers">0</span></p>
+        </div>
+    </div>
+    
+    <script type="module" src="scripts/firebaseApi.js"></script>
+    <script type="module" src="scripts/user-pattern-manager.js"></script>
+    <script type="module" src="scripts/event-handlers.js"></script>
+    <script type="module" src="scripts/game-logic.js"></script>
     <script src="scripts/bouncing-model.js"></script>
 </body>
 </html>
