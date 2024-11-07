@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            overflow-x: hidden;
+            height: 300vh;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        .name {
+            font-family: 'Arial', sans-serif;
+            font-size: 5rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(50px) rotateX(-30deg);
+            transition: all 0.8s ease-out;
+        }
+
+        .name.visible {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+
+        .char {
+            display: inline-block;
+            transition: transform 0.3s ease-out;
+        }
+
+        .char:hover {
+            transform: translateY(-20px) scale(1.2);
+            color: #00ff88;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="content">
+        <h1 class="name">YOUR NAME</h1>
+    </div>
+
+    <!-- Particles.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
+
+    <script>
+        // Initialize Firebase with your config
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyAZ3uSIfeNWjX6fzQGViILir-pDKr3bQgM", //don't you dare
+          authDomain: "personalwebsite-john.firebaseapp.com",
+          projectId: "personalwebsite-john",
+          storageBucket: "personalwebsite-john.appspot.com",
+          messagingSenderId: "641737664192",
+          appId: "1:641737664192:web:fe5484527ea8bde2a52f25"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // Particles.js configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: { enable: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: { enable: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Split text into characters for hover animation
+        const nameElement = document.querySelector('.name');
+        nameElement.innerHTML = nameElement.textContent.split('').map(char => 
+            `<span class="char">${char}</span>`
+        ).join('');
+
+        // Scroll animation
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            const nameElement = document.querySelector('.name');
+            const scrollPercent = (st / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            // Parallax effect
+            nameElement.style.transform = `translateY(${scrollPercent * 0.5}px)`;
+            
+            // Add visible class when in view
+            if (st > lastScrollTop) {
+                nameElement.classList.add('visible');
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        });
+
+        // Record visit
+        function recordVisit() {
+            const analytics = firebase.analytics();
+            analytics.logEvent('page_view', {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            });
+        }
+
+        // Record visit when page loads
+        window.addEventListener('load', recordVisit);
+    </script>
+</body>
+</html>
